@@ -1,0 +1,22 @@
+﻿[
+  {
+"    ""id"": ""calc_1"","
+"    ""name"": ""Profit_Ratio"","
+"    ""formula"": ""SUM([Profit]) / SUM([Sales])"""
+"  },"
+  {
+"    ""id"": ""calc_2"","
+"    ""name"": ""Region_Sales"","
+"    ""formula"": ""{FIXED [Region]: SUM([Sales])}"""
+"  },"
+  {
+"    ""id"": ""calc_3"","
+"    ""name"": ""Advanced_KPI"","
+"    ""formula"": ""IF {FIXED [Region]: SUM([Sales])} > 10000 THEN AVG([Profit]) / SUM([Sales]) ELSE WINDOW_SUM(SUM([Profit])) END"""
+"  },"
+  {
+"    ""id"": ""calc_4"","
+"    ""name"": ""Sales_Category"","
+"    ""formula"": ""IF SUM([Sales]) > 5000 THEN 'High' ELSE 'Low' END"""
+  }
+]

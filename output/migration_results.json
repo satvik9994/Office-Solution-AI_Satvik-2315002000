@@ -1,0 +1,26 @@
+[
+  {
+    "predicted_dax": "DIVIDE(SUM(Table[Profit]), SUM(Table[Sales]))",
+    "visual_mapping": "clustered column chart",
+    "confidence_score": 1.0,
+    "is_corrected": true
+  },
+  {
+    "predicted_dax": "CALCULATE(SUM(Table[Sales]), ALLEXCEPT(Table, Table[Region]))",
+    "visual_mapping": "table",
+    "confidence_score": 0.98,
+    "is_corrected": true
+  },
+  {
+    "predicted_dax": "IF(CALCULATE(SUM(Table[Sales]), ALLEXCEPT(Table, Table[Region])) > 10000, DIVIDE(AVG(Table[Profit]), SUM(Table[Sales])), CALCULATE(SUM(Table[Profit]), ALLSELECTED(Table)))",
+    "visual_mapping": "table",
+    "confidence_score": 0.3,
+    "is_corrected": false
+  },
+  {
+    "predicted_dax": "IF(SUM(Table[Sales]) > 5000, \"High\", \"Low\")",
+    "visual_mapping": "table",
+    "confidence_score": 1.0,
+    "is_corrected": true
+  }
+]

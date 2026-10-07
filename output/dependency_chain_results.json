@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Step1",
+    "formula": "SUM([Sales]) - SUM([Cost])",
+    "dax": "SUM(Table[Sales]) - SUM(Table[Cost])"
+  },
+  {
+    "name": "Step2",
+    "formula": "[Step1] / SUM([Sales])",
+    "dax": "DIVIDE([Step1], SUM(Table[Sales]))"
+  },
+  {
+    "name": "FinalMetric",
+    "formula": "IF [Step2] > 0.2 THEN 'High' ELSE 'Low' END",
+    "dax": "IF([Step2] > 0.2, \"High\", \"Low\")"
+  }
+]

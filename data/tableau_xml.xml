@@ -1,0 +1,6 @@
+﻿<workbook>
+  <calculations>
+"    <calculation name=""RunningSales"" formula=""RUNNING_SUM(SUM([Sales]))""/>"
+"    <calculation name=""RankSales"" formula=""RANK(SUM([Sales]))""/>"
+  </calculations>
+</workbook>

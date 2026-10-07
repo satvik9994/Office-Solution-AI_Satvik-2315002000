@@ -1,0 +1,16 @@
+﻿[
+  {
+"    ""id"": ""vis_1"","
+"    ""tableau_visual"": ""bar"","
+"    ""dimensions"": [""Region""],"
+"    ""measures"": [""Profit_Ratio""],"
+"    ""expected_powerbi"": ""clustered column chart"""
+"  },"
+  {
+"    ""id"": ""vis_2"","
+"    ""tableau_visual"": ""line"","
+"    ""dimensions"": [""Date""],"
+"    ""measures"": [""RunningSales""],"
+"    ""expected_powerbi"": ""line chart"""
+  }
+]

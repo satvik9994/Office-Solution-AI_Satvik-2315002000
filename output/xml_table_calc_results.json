@@ -1,0 +1,16 @@
+[
+  {
+    "name": "RunningSales",
+    "formula": "RUNNING_SUM(SUM([Sales]))",
+    "dax": "CALCULATE(SUM(Table[Sales]), FILTER(ALLSELECTED(Table[Date]), Table[Date] <= MAX(Table[Date])))",
+    "confidence": 0.82,
+    "has_visual_context": true
+  },
+  {
+    "name": "RankSales",
+    "formula": "RANK(SUM([Sales]))",
+    "dax": "RANKX(ALLSELECTED(Table[Dimension]), SUM(Table[Sales]), , DESC)",
+    "confidence": 0.73,
+    "has_visual_context": false
+  }
+]

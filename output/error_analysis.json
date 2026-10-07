@@ -1,0 +1,78 @@
+[
+  {
+    "id": "calc_1",
+    "name": "Profit_Ratio",
+    "error_category": "inverted_aggregation_and_unsafe_division",
+    "explanation": "Legacy DAX inverted the numerator and denominator (swapped Sales and Profit) and used the raw '/' operator instead of the safe 'DIVIDE()' function.",
+    "legacy_dax": "SUM(Sales) / SUM(Profit)",
+    "corrected_dax": "DIVIDE(SUM(Table[Profit]), SUM(Table[Sales]))",
+    "ground_truth_dax": "DIVIDE(SUM(Profit), SUM(Sales))",
+    "numerical_legacy": {
+      "value": 4.181818181818182,
+      "status": "MISMATCH"
+    },
+    "numerical_corrected": {
+      "value": 0.2391304347826087,
+      "status": "VERIFIED"
+    },
+    "confidence": 1.0
+  },
+  {
+    "id": "calc_2",
+    "name": "Region_Sales",
+    "error_category": "incorrect_lod_conversion",
+    "explanation": "Legacy DAX completely omitted the Level of Detail (FIXED) context modifier, reducing a regional fixed grain calculation to an unconstrained simple sum.",
+    "legacy_dax": "SUM(Sales)",
+    "corrected_dax": "CALCULATE(SUM(Table[Sales]), ALLEXCEPT(Table, Table[Region]))",
+    "ground_truth_dax": "CALCULATE(SUM(Sales), ALLEXCEPT(Table, Table[Region]))",
+    "numerical_legacy": {
+      "value": 46000.0,
+      "status": "MISMATCH"
+    },
+    "numerical_corrected": {
+      "value": {
+        "East": 15000.0,
+        "South": 4000.0,
+        "West": 27000.0
+      },
+      "status": "VERIFIED"
+    },
+    "confidence": 0.98
+  },
+  {
+    "id": "calc_3",
+    "name": "Advanced_KPI",
+    "error_category": "expression_truncation",
+    "explanation": "Legacy DAX truncated a compound multi-part conditional calculation into a single inner scalar aggregation, losing conditions and table calculations.",
+    "legacy_dax": "AVG(Profit)",
+    "corrected_dax": "IF(CALCULATE(SUM(Table[Sales]), ALLEXCEPT(Table, Table[Region])) > 10000, DIVIDE(AVG(Table[Profit]), SUM(Table[Sales])), CALCULATE(SUM(Table[Profit]), ALLSELECTED(Table)))",
+    "ground_truth_dax": "IF(CALCULATE(SUM(Sales), ALLEXCEPT(Table, Table[Region])) > 10000, DIVIDE(AVG(Profit), SUM(Sales)), CALCULATE(SUM(Profit), FILTER(ALL(Table), ...)))",
+    "numerical_legacy": {
+      "value": null,
+      "status": "UNSUPPORTED"
+    },
+    "numerical_corrected": {
+      "value": null,
+      "status": "UNSUPPORTED"
+    },
+    "confidence": 0.3
+  },
+  {
+    "id": "calc_4",
+    "name": "Sales_Category",
+    "error_category": "return_type_mismatch",
+    "explanation": "Legacy DAX returned numeric values (1, 0) instead of textual category labels ('High', 'Low'), violating the expected return data type.",
+    "legacy_dax": "IF(SUM(Sales) > 5000, 1, 0)",
+    "corrected_dax": "IF(SUM(Table[Sales]) > 5000, \"High\", \"Low\")",
+    "ground_truth_dax": "IF(SUM(Sales) > 5000, \"High\", \"Low\")",
+    "numerical_legacy": {
+      "value": 1.0,
+      "status": "MISMATCH"
+    },
+    "numerical_corrected": {
+      "value": "High",
+      "status": "VERIFIED"
+    },
+    "confidence": 1.0
+  }
+]

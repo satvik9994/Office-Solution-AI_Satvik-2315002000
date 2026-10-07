@@ -1,0 +1,18 @@
+﻿[
+  {
+"    ""id"": ""calc_1"","
+"    ""dax"": ""DIVIDE(SUM(Profit), SUM(Sales))"""
+"  },"
+  {
+"    ""id"": ""calc_2"","
+"    ""dax"": ""CALCULATE(SUM(Sales), ALLEXCEPT(Table, Table[Region]))"""
+"  },"
+  {
+"    ""id"": ""calc_3"","
+"    ""dax"": ""IF(CALCULATE(SUM(Sales), ALLEXCEPT(Table, Table[Region])) > 10000, DIVIDE(AVG(Profit), SUM(Sales)), CALCULATE(SUM(Profit), FILTER(ALL(Table), ...)))"""
+"  },"
+  {
+"    ""id"": ""calc_4"","
+"    ""dax"": ""IF(SUM(Sales) > 5000, \""High\"", \""Low\"")"""
+  }
+]

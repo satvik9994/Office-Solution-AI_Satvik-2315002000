@@ -1,0 +1,14 @@
+﻿[
+  {
+"    ""name"": ""Step1"","
+"    ""formula"": ""SUM([Sales]) - SUM([Cost])"""
+"  },"
+  {
+"    ""name"": ""Step2"","
+"    ""formula"": ""[Step1] / SUM([Sales])"""
+"  },"
+  {
+"    ""name"": ""FinalMetric"","
+"    ""formula"": ""IF [Step2] > 0.2 THEN 'High' ELSE 'Low' END"""
+  }
+]
